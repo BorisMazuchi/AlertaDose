@@ -13,5 +13,4 @@ public class PacienteDTO {
     private Long id;
     private String cpf;
     private LocalDate dataNascimento;
-    private List<Medicamento> medicamentos;
 }

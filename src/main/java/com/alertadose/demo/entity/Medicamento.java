@@ -2,9 +2,13 @@ package com.alertadose.demo.entity;
 
 import com.alertadose.demo.enums.TipoOrigemMedicamentos;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name= "medicamento")
+@Getter
+@Setter
 public class Medicamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +17,6 @@ public class Medicamento {
     private String descricao;
     @Enumerated(EnumType.STRING)
     private TipoOrigemMedicamentos origem;
-    @ManyToOne
-    @JoinColumn(name="paciente_id")
-    private Paciente paciente;
 }
 
 

@@ -19,7 +19,4 @@ public class Paciente {
     private String cpf;
     @Column(name="data_nascimento")
     private LocalDate dataNascimento;
-    // lembrar de colocar a coluna de diagnostico medico
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Medicamento> medicamentos;
 }

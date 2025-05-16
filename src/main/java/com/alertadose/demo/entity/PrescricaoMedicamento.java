@@ -10,11 +10,11 @@ public class PrescricaoMedicamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="paciente_id", nullable=false)
     private  Paciente paciente;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="medicamento_id", nullable=false)
     private Medicamento medicamento;
 
