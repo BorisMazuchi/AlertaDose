@@ -20,4 +20,9 @@ public class MedicamentoService {
         Medicamento medicamento = medicamentoMapper.toEntity(medicamentoDTO);
         return medicamentoRepository.save(medicamento);
     }
+
+    public Medicamento updateMedicamento(MedicamentoDTO medicamentoDTO) {
+        Medicamento medicamento = medicamentoMapper.toEntity(medicamentoDTO);
+        return medicamentoRepository.save(medicamento);
+    }
 }
