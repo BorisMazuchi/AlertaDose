@@ -1,10 +1,14 @@
 package com.alertadose.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Entity
+@Getter
+@Setter
 public class PrescricaoMedicamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,7 +16,7 @@ public class PrescricaoMedicamento {
 
     @ManyToOne
     @JoinColumn(name="paciente_id", nullable=false)
-    private  Paciente paciente;
+    private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name="medicamento_id", nullable=false)
