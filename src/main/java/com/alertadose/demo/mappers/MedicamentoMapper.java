@@ -13,6 +13,7 @@ public class MedicamentoMapper {
         medicamentoDTO.setNome(medicamento.getNome());
         medicamentoDTO.setDescricao(medicamento.getDescricao());
         medicamentoDTO.setOrigem(medicamento.getOrigem());
+        medicamentoDTO.setComprado(medicamento.getComprado());
         return medicamentoDTO;
     }
 
@@ -23,6 +24,7 @@ public class MedicamentoMapper {
         medicamento.setNome(medicamentoDTO.getNome());
         medicamento.setDescricao(medicamentoDTO.getDescricao());
         medicamento.setOrigem(medicamentoDTO.getOrigem());
+        medicamento.setComprado(medicamentoDTO.getComprado());
         return medicamento;
     }
 }

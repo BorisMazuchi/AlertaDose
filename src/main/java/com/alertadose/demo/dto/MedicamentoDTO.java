@@ -10,5 +10,6 @@ public class MedicamentoDTO {
     private String nome;
     private String descricao;
     private TipoOrigemMedicamentos origem;
+    private Boolean comprado;
 }
 

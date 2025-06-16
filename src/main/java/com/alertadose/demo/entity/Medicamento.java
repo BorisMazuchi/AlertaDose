@@ -17,6 +17,7 @@ public class Medicamento {
     private String descricao;
     @Enumerated(EnumType.STRING)
     private TipoOrigemMedicamentos origem;
+    private Boolean comprado;
 }
 
 

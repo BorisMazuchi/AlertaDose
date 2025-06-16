@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/paciente")
 public class PacienteController {
@@ -26,4 +29,27 @@ public class PacienteController {
         Paciente paciente = pacienteService.createPaciente(pacienteDTO);
         return ResponseEntity.status(HttpStatus.OK).body(paciente);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePaciented(@PathVariable Long id) {
+        boolean deletado =  pacienteService.deletePaciente(id);
+        if (deletado) {
+            return ResponseEntity.status(HttpStatus.OK).body("Paciente deletado com sucesso");
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Paciente inexistente");
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Paciente>> getAllPacientes() {
+        List<Paciente> pacientes = pacienteService.getAllPacientes();
+        return ResponseEntity.status(HttpStatus.OK).body(pacientes);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Paciente> getPacienteById(@PathVariable Long id) {
+        Optional<Paciente> paciente = pacienteService.getPacienteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(paciente.get());
+    }
+
 }
