@@ -10,6 +10,8 @@ import com.alertadose.demo.repository.PrescricaoMedicamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -33,6 +35,14 @@ public class PrescricaoMedicamentoMapper {
         return dto;
     }
 
+    public List<PrescricaoMedicamentoDTO> toDTO(List<PrescricaoMedicamento> prescricoesMedicamento) {
+        List<PrescricaoMedicamentoDTO> dtos = new ArrayList<>();
+        for(PrescricaoMedicamento pescricao : prescricoesMedicamento ) {
+            dtos.add(toDTO(pescricao));
+        }
+        return dtos;
+    }
+
     public PrescricaoMedicamento toEntity(PrescricaoMedicamentoDTO dto) {
         PrescricaoMedicamento prescricao = new PrescricaoMedicamento();
         prescricao.setId(dto.getId());
@@ -45,5 +55,13 @@ public class PrescricaoMedicamentoMapper {
         prescricao.setDose(dto.getDose());
         prescricao.setFrequencia(dto.getFrequencia());
         return prescricao;
+    }
+
+    public List<PrescricaoMedicamento> toEntity(List<PrescricaoMedicamentoDTO> dtos) {
+        List<PrescricaoMedicamento> prescricoesMedicamento = new ArrayList<>();
+        for(PrescricaoMedicamentoDTO dto : dtos) {
+            prescricoesMedicamento.add(toEntity(dto));
+        }
+        return prescricoesMedicamento;
     }
 }

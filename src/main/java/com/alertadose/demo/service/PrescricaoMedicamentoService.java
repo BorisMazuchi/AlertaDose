@@ -11,22 +11,21 @@ import com.alertadose.demo.repository.PrescricaoMedicamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PrescricaoMedicamentoService {
 
     @Autowired
-    PrescricaoMedicamentoRepository prescricaoMedicamentoRepository;
+    PrescricaoMedicamentoRepository repository;
     @Autowired
     MedicamentoRepository medicamentoRepository;
     @Autowired
     PacienteRepository pacienteRepository;
     @Autowired
-    private PrescricaoMedicamentoMapper prescricaoMedicamentoMapper;
+    private PrescricaoMedicamentoMapper mapper;
 
     public PrescricaoMedicamentoDTO createPrescricao( PrescricaoMedicamentoDTO dto) {
-        System.out.println("DTO recebido:");
-        System.out.println("Paciente ID: " + dto.getPacienteId());
-        System.out.println("Medicamento ID: " + dto.getMedicamentoId());
         Medicamento medicamento = medicamentoRepository.findById(dto.getMedicamentoId())
                 .orElseThrow(() -> new RuntimeException("Medicamento nao encontrado"));
         Paciente paciente = pacienteRepository.findById(dto.getPacienteId())
@@ -36,9 +35,29 @@ public class PrescricaoMedicamentoService {
         prescricaoMedicamento.setPaciente(paciente);
         prescricaoMedicamento.setDose(dto.getDose());
         prescricaoMedicamento.setFrequencia(dto.getFrequencia());
-        return prescricaoMedicamentoMapper.toDTO(prescricaoMedicamentoRepository.save(prescricaoMedicamento));
+        return mapper.toDTO(repository.save(prescricaoMedicamento));
     }
 
+    public PrescricaoMedicamentoDTO updatePescricao(PrescricaoMedicamentoDTO dto) {
+        PrescricaoMedicamento pescricao = repository.save(mapper.toEntity(dto));
+        return mapper.toDTO(pescricao);
+    }
 
+    public boolean deletePrescricao(Long id) {
+        if(repository.findById(id).isPresent()) {
+            repository.deleteById(id);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public List<PrescricaoMedicamentoDTO> getAllPrescricao() {
+       return mapper.toDTO(repository.findAll());
+    }
+
+    public PrescricaoMedicamentoDTO getPrescricaoById(Long id) {
+        return mapper.toDTO(repository.findById(id).get());
+    }
 
 }
