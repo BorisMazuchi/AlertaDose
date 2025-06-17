@@ -41,14 +41,13 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Paciente>> getAllPacientes() {
-        List<Paciente> pacientes = pacienteService.getAllPacientes();
-        return ResponseEntity.status(HttpStatus.OK).body(pacientes);
+    public ResponseEntity<List<PacienteDTO>> getAllPacientes() {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.getAllPacientes());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Paciente> getPacienteById(@PathVariable Long id) {
-        Optional<Paciente> paciente = pacienteService.getPacienteById(id);
+    public ResponseEntity<PacienteDTO> getPacienteById(@PathVariable Long id) {
+        Optional<PacienteDTO> paciente = pacienteService.getPacienteById(id);
         return ResponseEntity.status(HttpStatus.OK).body(paciente.get());
     }
 

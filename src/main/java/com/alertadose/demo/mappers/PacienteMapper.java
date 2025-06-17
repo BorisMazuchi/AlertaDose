@@ -4,6 +4,9 @@ import com.alertadose.demo.dto.PacienteDTO;
 import com.alertadose.demo.entity.Paciente;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class PacienteMapper {
 
@@ -16,6 +19,14 @@ public class PacienteMapper {
         return pacienteDTO;
     }
 
+    public List<PacienteDTO> toDTO(List<Paciente> pacientes) {
+        List<PacienteDTO> pacientesDTOS = new ArrayList<>();
+        for(Paciente paciente : pacientes) {
+            pacientesDTOS.add(toDTO(paciente));
+        }
+        return pacientesDTOS;
+    }
+
     public Paciente toEntity(PacienteDTO pacienteDTO) {
         Paciente paciente = new Paciente();
         paciente.setId(pacienteDTO.getId());
@@ -23,5 +34,13 @@ public class PacienteMapper {
         paciente.setCpf(pacienteDTO.getCpf());
         paciente.setDataNascimento(pacienteDTO.getDataNascimento());
         return paciente;
+    }
+
+    public List<Paciente> toEntity(List<PacienteDTO> pacienteDTOS) {
+        List<Paciente> pacientes = new ArrayList<>();
+        for(PacienteDTO pacienteDTO : pacienteDTOS) {
+            pacientes.add(toEntity(pacienteDTO));
+        }
+        return pacientes;
     }
 }
