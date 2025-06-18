@@ -29,7 +29,7 @@ public class PrescricaoMedicamentoController {
         return ResponseEntity.status(HttpStatus.OK).body(pescricao);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePescricao(@PathVariable Long id) {
         boolean deletado = service.deletePrescricao(id);
         if (deletado) {
@@ -44,7 +44,7 @@ public class PrescricaoMedicamentoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getAllPrescricao());
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PrescricaoMedicamentoDTO> getPrescricaoById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getPrescricaoById(id));
     }

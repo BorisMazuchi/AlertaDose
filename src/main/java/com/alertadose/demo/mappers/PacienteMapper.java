@@ -43,4 +43,12 @@ public class PacienteMapper {
         }
         return pacientes;
     }
+
+    public Paciente merge(Paciente paciente, PacienteDTO dto) {
+        if (dto.getNome() != null) paciente.setNome(dto.getNome());
+        if (dto.getCpf() != null) paciente.setCpf(dto.getCpf());
+        if (dto.getDataNascimento() != null) paciente.setDataNascimento(dto.getDataNascimento());
+        return paciente;
+    }
+
 }

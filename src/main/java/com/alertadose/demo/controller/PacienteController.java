@@ -26,7 +26,7 @@ public class PacienteController {
 
     @PutMapping
     public ResponseEntity<Paciente> updatePaciente(@RequestBody PacienteDTO pacienteDTO) {
-        Paciente paciente = pacienteService.createPaciente(pacienteDTO);
+        Paciente paciente = pacienteService.updatePaciente(pacienteDTO);
         return ResponseEntity.status(HttpStatus.OK).body(paciente);
     }
 

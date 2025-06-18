@@ -27,8 +27,8 @@ public class PacienteService {
     }
 
     public Paciente updatePaciente(PacienteDTO dto) {
-        Paciente paciente = mapper.toEntity(dto);
-        return pacienteRepository.save(paciente);
+        Paciente pacienteOriginal =  pacienteRepository.findById(dto.getId()).orElseThrow(() -> new EntityNotFoundException("Paciente no encontrado"));
+        return pacienteRepository.save(mapper.merge(pacienteOriginal, dto));
     }
 
     public boolean deletePaciente(Long id) {
