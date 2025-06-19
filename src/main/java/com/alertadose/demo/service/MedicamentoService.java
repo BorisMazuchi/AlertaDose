@@ -27,8 +27,8 @@ public class MedicamentoService {
     }
 
     public Medicamento updateMedicamento(MedicamentoDTO medicamentoDTO) {
-        Medicamento medicamento = mapper.toEntity(medicamentoDTO);
-        return medicamentoRepository.save(medicamento);
+        Medicamento medicamentoOriginal = medicamentoRepository.findById(medicamentoDTO.getId()).orElseThrow(() -> new EntityNotFoundException("Medicamneto nao encontrado"));
+        return medicamentoRepository.save(mapper.merge(medicamentoOriginal, medicamentoDTO));
     }
 
     public boolean deleteMedicamento(Long id){

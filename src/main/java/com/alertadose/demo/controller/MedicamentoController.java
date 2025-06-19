@@ -30,8 +30,7 @@ public class MedicamentoController {
 
     @PutMapping
     public ResponseEntity<Medicamento> update(@RequestBody MedicamentoDTO medicamentoDTO) {
-        Medicamento medicamento = medicamentoService.createMedicamento(medicamentoDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(medicamento);
+        return ResponseEntity.status(HttpStatus.OK).body(medicamentoService.updateMedicamento(medicamentoDTO));
     }
 
     @DeleteMapping("/{id}")

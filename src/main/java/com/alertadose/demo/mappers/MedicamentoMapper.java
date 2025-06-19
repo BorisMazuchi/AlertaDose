@@ -45,4 +45,12 @@ public class MedicamentoMapper {
         }
         return medicamentos;
     }
+
+    public Medicamento merge(Medicamento medicamento, MedicamentoDTO dto) {
+        if (dto.getComprado() != null) medicamento.setComprado(dto.getComprado());
+        if (dto.getOrigem() != null) medicamento.setOrigem(dto.getOrigem());
+        if (dto.getNome() != null) medicamento.setNome(dto.getNome());
+        if (dto.getDescricao() != null) medicamento.setDescricao(dto.getDescricao());
+        return medicamento;
+    }
 }
