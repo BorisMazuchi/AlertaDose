@@ -25,8 +25,7 @@ public class PrescricaoMedicamentoController {
 
     @PutMapping
     public ResponseEntity<PrescricaoMedicamentoDTO> updatePescricao(@RequestBody PrescricaoMedicamentoDTO prescricaoMedicamentoDTO) {
-        PrescricaoMedicamentoDTO pescricao = service.updatePescricao(prescricaoMedicamentoDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(pescricao);
+        return ResponseEntity.status(HttpStatus.OK).body(service.updatePescricao(prescricaoMedicamentoDTO));
     }
 
     @DeleteMapping("/{id}")

@@ -1,5 +1,6 @@
 package com.alertadose.demo.entity;
 
+import com.alertadose.demo.enums.Medidas;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,10 @@ public class PrescricaoMedicamento {
     private BigDecimal dose;
 
     @Column(nullable = false)
-    private int frequencia;
+    private Integer frequencia;
+
+    @Column(nullable = false)
+    private Medidas medida;
 
 
 

@@ -1,5 +1,6 @@
 package com.alertadose.demo.entity;
 
+import com.alertadose.demo.enums.Medidas;
 import com.alertadose.demo.enums.TipoOrigemMedicamentos;
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,5 +1,6 @@
 package com.alertadose.demo.dto;
 
+import com.alertadose.demo.enums.Medidas;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,5 +13,6 @@ public class PrescricaoMedicamentoDTO {
     private Long pacienteId;
     private Long medicamentoId;
     private BigDecimal dose;
-    private int frequencia;
+    private Medidas medida;
+    private Integer frequencia;
 }

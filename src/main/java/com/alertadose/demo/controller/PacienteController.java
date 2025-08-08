@@ -31,13 +31,9 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePaciented(@PathVariable Long id) {
-        boolean deletado =  pacienteService.deletePaciente(id);
-        if (deletado) {
-            return ResponseEntity.status(HttpStatus.OK).body("Paciente deletado com sucesso");
-        }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Paciente inexistente");
-        }
+    public ResponseEntity<Void> deletePaciented(@PathVariable Long id) {
+        pacienteService.deletePaciente(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping

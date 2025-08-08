@@ -8,6 +8,7 @@ import com.alertadose.demo.mappers.PrescricaoMedicamentoMapper;
 import com.alertadose.demo.repository.MedicamentoRepository;
 import com.alertadose.demo.repository.PacienteRepository;
 import com.alertadose.demo.repository.PrescricaoMedicamentoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,12 +36,14 @@ public class PrescricaoMedicamentoService {
         prescricaoMedicamento.setPaciente(paciente);
         prescricaoMedicamento.setDose(dto.getDose());
         prescricaoMedicamento.setFrequencia(dto.getFrequencia());
+        prescricaoMedicamento.setMedida(dto.getMedida());
         return mapper.toDTO(repository.save(prescricaoMedicamento));
     }
 
     public PrescricaoMedicamentoDTO updatePescricao(PrescricaoMedicamentoDTO dto) {
-        PrescricaoMedicamento pescricao = repository.save(mapper.toEntity(dto));
-        return mapper.toDTO(pescricao);
+        PrescricaoMedicamento pescricaoOriginal = repository.findById(dto.getId()).orElseThrow(() -> new EntityNotFoundException(("Prescricao nao encontrada")));
+        repository.save(mapper.merge(pescricaoOriginal, dto));
+        return mapper.toDTO(mapper.merge(pescricaoOriginal, dto));
     }
 
     public boolean deletePrescricao(Long id) {

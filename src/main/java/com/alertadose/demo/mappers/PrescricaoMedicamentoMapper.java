@@ -32,6 +32,7 @@ public class PrescricaoMedicamentoMapper {
         dto.setMedicamentoId(prescricaoMedicamento.getMedicamento().getId());
         dto.setDose(prescricaoMedicamento.getDose());
         dto.setFrequencia(prescricaoMedicamento.getFrequencia());
+        dto.setMedida(prescricaoMedicamento.getMedida());
         return dto;
     }
 
@@ -54,6 +55,7 @@ public class PrescricaoMedicamentoMapper {
         prescricao.setMedicamento(medicamento);
         prescricao.setDose(dto.getDose());
         prescricao.setFrequencia(dto.getFrequencia());
+        prescricao.setMedida(dto.getMedida());
         return prescricao;
     }
 
@@ -63,5 +65,18 @@ public class PrescricaoMedicamentoMapper {
             prescricoesMedicamento.add(toEntity(dto));
         }
         return prescricoesMedicamento;
+    }
+
+    public PrescricaoMedicamento merge (PrescricaoMedicamento prescricaoMedicamento, PrescricaoMedicamentoDTO dto) {
+        if(dto.getDose() != null) prescricaoMedicamento.setDose(dto.getDose());
+        Medicamento medicamento = medicamentoRepository.findById(dto.getMedicamentoId())
+                .orElseThrow(() -> new RuntimeException("Medicamento nao encontrado"));
+        if(dto.getMedicamentoId() != null) prescricaoMedicamento.setMedicamento(medicamento);
+        if(dto.getMedida() != null) prescricaoMedicamento.setMedida(dto.getMedida());
+        Paciente paciente = pacienteRepository.findById(dto.getPacienteId())
+                .orElseThrow(() -> new RuntimeException("Paciente nao encontrado"));
+        if(dto.getPacienteId() != null) prescricaoMedicamento.setPaciente(paciente);
+        if(dto.getFrequencia() != null) prescricaoMedicamento.setFrequencia(dto.getFrequencia());
+        return prescricaoMedicamento;
     }
 }
